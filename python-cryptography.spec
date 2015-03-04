@@ -14,6 +14,7 @@ Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
+Patch0:         python-cryptography-0.7.2-testspath.patch
 
 BuildRequires:  openssl-devel
 BuildRequires:  python2-devel python-setuptools python-cffi >= 0.8 python-six
@@ -49,6 +50,7 @@ recipes to Python developers.
 
 %prep
 %setup -q -n cryptography-%{version}
+%patch0 -p1
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -85,7 +87,7 @@ popd
 
 %if 0%{?with_python3}
 pushd %{py3dir}
-%{__python3} setup.py install --skip-build --prefix=%{_prefix} --root %{buildroot}
+%{__python3} setup.py test
 popd
 %endif
 
@@ -105,6 +107,8 @@ popd
 %changelog
 * Tue Feb 03 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.7.2-1
 - New upstream release. BSD is now an optional license.
+- Fix test running on python3
+- Add upstream patch to fix test paths
 
 * Fri Nov 07 2014 Matej Cepl <mcepl@redhat.com> - 0.6.1-2
 - Fix requires, for reasons why other development files were not
