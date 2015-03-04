@@ -19,7 +19,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  python2-devel python-setuptools python-cffi >= 0.8 python-six
 # For check
 BuildRequires:  python-cryptography-vectors = %{version}, pytest, python-pyasn1
-BuildRequires:  python-iso8601, python-pretend
+BuildRequires:  python-iso8601, python-pretend, python-enum34
 %if 0%{?with_python3}
 BuildRequires:  python3-devel python3-setuptools python3-cffi >= 0.8 python3-six
 BuildRequires:  python3-pytest, python3-pyasn1, python3-iso8601, python3-pretend
