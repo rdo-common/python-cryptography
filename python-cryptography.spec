@@ -6,19 +6,19 @@
 %endif
 
 Name:           python-cryptography
-Version:        0.6.1
-Release:        2%{?dist}
+Version:        0.7.2
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
-License:        ASL 2.0
+License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
 BuildRequires:  python2-devel python-setuptools python-cffi >= 0.8 python-six
 # For check
-BuildRequires:  python-cryptography-vectors, pytest, python-pyasn1
+BuildRequires:  python-cryptography-vectors = %{version}, pytest, python-pyasn1
 BuildRequires:  python-iso8601, python-pretend
 %if 0%{?with_python3}
 BuildRequires:  python3-devel python3-setuptools python3-cffi >= 0.8 python3-six
@@ -91,18 +91,21 @@ popd
 
 
 %files
-%doc LICENSE README.rst docs
+%doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
 %{python_sitearch}/*
 
 
 %if 0%{?with_python3}
 %files -n python3-cryptography
-%doc LICENSE README.rst docs
+%doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
 %{python3_sitearch}/*
 %endif
 
 
 %changelog
+* Tue Feb 03 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.7.2-1
+- New upstream release. BSD is now an optional license.
+
 * Fri Nov 07 2014 Matej Cepl <mcepl@redhat.com> - 0.6.1-2
 - Fix requires, for reasons why other development files were not
   eliminated see https://github.com/pyca/cryptography/issues/1463.
