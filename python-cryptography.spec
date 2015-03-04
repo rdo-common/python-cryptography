@@ -18,7 +18,6 @@ Patch0:         python-cryptography-0.7.2-testspath.patch
 
 BuildRequires:  openssl-devel
 BuildRequires:  python-enum34
-BuildRequires:  pytest
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -28,6 +27,7 @@ BuildRequires:  python-cryptography-vectors = %{version}
 BuildRequires:  python-pyasn1
 BuildRequires:  python-iso8601
 BuildRequires:  python-pretend
+BuildRequires:  pytest
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
@@ -38,6 +38,7 @@ BuildRequires:  python3-cryptography-vectors = %{version}
 BuildRequires:  python3-pyasn1
 BuildRequires:  python3-iso8601
 BuildRequires:  python3-pretend
+BuildRequires:  python3-pytest
 %endif
 
 Requires:       openssl
