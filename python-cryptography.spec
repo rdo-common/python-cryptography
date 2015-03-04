@@ -1,4 +1,4 @@
-%if 0%{?fedora} > 12
+%if 0%{?fedora} > 20
 %global with_python3 1
 %else
 %{!?__python2: %global __python2 /usr/bin/python2}
@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        0.7.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -17,16 +17,31 @@ Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptogra
 Patch0:         python-cryptography-0.7.2-testspath.patch
 
 BuildRequires:  openssl-devel
-BuildRequires:  python2-devel python-setuptools python-cffi >= 0.8 python-six
-# For check
-BuildRequires:  python-cryptography-vectors = %{version}, pytest, python-pyasn1
-BuildRequires:  python-iso8601, python-pretend, python-enum34
+BuildRequires:  python-enum34
+BuildRequires:  pytest
+
+BuildRequires:  python2-devel
+BuildRequires:  python-setuptools
+BuildRequires:  python-cffi >= 0.8
+BuildRequires:  python-six
+BuildRequires:  python-cryptography-vectors = %{version}
+BuildRequires:  python-pyasn1
+BuildRequires:  python-iso8601
+BuildRequires:  python-pretend
+
 %if 0%{?with_python3}
-BuildRequires:  python3-devel python3-setuptools python3-cffi >= 0.8 python3-six
-BuildRequires:  python3-pytest, python3-pyasn1, python3-iso8601, python3-pretend
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-cffi >= 0.8
+BuildRequires:  python3-six
+BuildRequires:  python3-cryptography-vectors = %{version}
+BuildRequires:  python3-pyasn1
+BuildRequires:  python3-iso8601
+BuildRequires:  python3-pretend
 %endif
 
 Requires:       openssl
+Requires:       python-enum34
 Requires:       python-cffi >= 0.8
 Requires:       python-six >= 1.6.1
 
@@ -105,6 +120,10 @@ popd
 
 
 %changelog
+* Wed Mar 04 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.7.2-2
+- Add python3-cryptography-vectors build requires
+- Add python-enum34 requires
+
 * Tue Feb 03 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.7.2-1
 - New upstream release. BSD is now an optional license.
 - Fix test running on python3
