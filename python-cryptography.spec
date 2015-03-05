@@ -99,12 +99,14 @@ popd
 
 
 %check
+%if 0%{?fedora} > 20
 %{__python} setup.py test
 
 %if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py test
 popd
+%endif
 %endif
 
 
