@@ -6,15 +6,14 @@
 %endif
 
 Name:           python-cryptography
-Version:        0.7.2
-Release:        2%{?dist}
+Version:        0.8
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
-Patch0:         python-cryptography-0.7.2-testspath.patch
 
 BuildRequires:  openssl-devel
 BuildRequires:  python-enum34
@@ -66,7 +65,6 @@ recipes to Python developers.
 
 %prep
 %setup -q -n cryptography-%{version}
-%patch0 -p1
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -123,6 +121,10 @@ popd
 
 
 %changelog
+* Fri Mar 13 2015 Nathaniel McCallum <nathaniel@natemccallum.com> - 0.8-1
+- New upstream release
+- Remove upstreamed patch
+
 * Wed Mar 04 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.7.2-2
 - Add python3-cryptography-vectors build requires
 - Add python-enum34 requires
