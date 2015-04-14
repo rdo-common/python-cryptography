@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        0.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -44,6 +44,7 @@ Requires:       openssl
 Requires:       python-enum34
 Requires:       python-cffi >= 0.8
 Requires:       python-six >= 1.6.1
+Requires:       python-pyasn1
 
 %description
 cryptography is a package designed to expose cryptographic primitives and
@@ -121,6 +122,9 @@ popd
 
 
 %changelog
+* Tue Apr 14 2015 Matej Cepl <mcepl@redhat.com> - 0.8-2
+- Add python-pyasn1 Requires (#1211073)
+
 * Fri Mar 13 2015 Nathaniel McCallum <nathaniel@natemccallum.com> - 0.8-1
 - New upstream release
 - Remove upstreamed patch
