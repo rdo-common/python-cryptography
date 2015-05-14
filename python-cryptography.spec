@@ -6,7 +6,7 @@
 %endif
 
 Name:           python-cryptography
-Version:        0.8.2
+Version:        0.9
 Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
@@ -123,6 +123,9 @@ popd
 
 
 %changelog
+* Thu May 14 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.9-1
+- New upstream release
+
 * Fri Apr 17 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.8.2-1
 - New upstream release
 - Add python3-pyasn1 Requires (#1211073)
