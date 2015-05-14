@@ -99,14 +99,12 @@ popd
 
 
 %check
-%if 0%{?fedora} > 20
 %{__python} setup.py test
 
 %if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py test
 popd
-%endif
 %endif
 
 
@@ -125,6 +123,7 @@ popd
 %changelog
 * Thu May 14 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.9-1
 - New upstream release
+- Run tests on RHEL
 
 * Fri Apr 17 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.8.2-1
 - New upstream release
