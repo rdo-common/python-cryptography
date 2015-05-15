@@ -5,6 +5,9 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
+%global reqs() %1-idna %1-pyasn1 %1-six >= 1.4.1 %1-cffi >= 0.8
+%global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version}
+
 Name:           python-cryptography
 Version:        0.9
 Release:        1%{?dist}
@@ -16,35 +19,19 @@ URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
-BuildRequires:  python-enum34
+Requires:       openssl
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
-BuildRequires:  python-cffi >= 0.8
-BuildRequires:  python-six
-BuildRequires:  python-cryptography-vectors = %{version}
-BuildRequires:  python-pyasn1
-BuildRequires:  python-iso8601
-BuildRequires:  python-pretend
-BuildRequires:  pytest
+BuildRequires:  pytest %breqs python
+BuildRequires:  python-enum34 python-ipaddress %reqs python
+Requires:       python-enum34 python-ipaddress %reqs python
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-cffi >= 0.8
-BuildRequires:  python3-six
-BuildRequires:  python3-cryptography-vectors = %{version}
-BuildRequires:  python3-pyasn1
-BuildRequires:  python3-iso8601
-BuildRequires:  python3-pretend
-BuildRequires:  python3-pytest
+BuildRequires:  python3-pytest %breqs python3
+BuildRequires:  %reqs python3
 %endif
 
-Requires:       openssl
-Requires:       python-enum34
-Requires:       python-cffi >= 0.8
-Requires:       python-six >= 1.6.1
-Requires:       python-pyasn1
 
 %description
 cryptography is a package designed to expose cryptographic primitives and
@@ -56,9 +43,7 @@ Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 
 Requires:       openssl
-Requires:       python3-cffi >= 0.8
-Requires:       python3-six >= 1.6.1
-Requires:       python3-pyasn1
+Requires:       %reqs python3
 
 %description -n python3-cryptography
 cryptography is a package designed to expose cryptographic primitives and
@@ -124,6 +109,7 @@ popd
 * Thu May 14 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.9-1
 - New upstream release
 - Run tests on RHEL
+- New deps: python-idna, python-ipaddress
 
 * Fri Apr 17 2015 Nathaniel McCallum <npmccallum@redhat.com> - 0.8.2-1
 - New upstream release
