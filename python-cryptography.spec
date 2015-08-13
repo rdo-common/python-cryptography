@@ -5,12 +5,12 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
-%global reqs() %1-idna %1-pyasn1 %1-six >= 1.4.1 %1-cffi >= 0.8
+%global reqs() %1-idna >= 2.0 %1-pyasn1 %1-six >= 1.4.1 %1-cffi >= 0.8
 %global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version}
 
 Name:           python-cryptography
-Version:        0.9
-Release:        2%{?dist}
+Version:        1.0
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -106,6 +106,9 @@ popd
 
 
 %changelog
+* Wed Aug 12 2015 Nathaniel McCallum <npmccallum@redhat.com> - 1.0-1
+- New upstream release
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
