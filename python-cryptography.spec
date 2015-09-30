@@ -9,7 +9,7 @@
 %global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version}
 
 Name:           python-cryptography
-Version:        1.0
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
@@ -106,6 +106,9 @@ popd
 
 
 %changelog
+* Wed Sep 30 2015 Matěj Cepl <mcepl@redhat.com> - 1.0.2-1
+- New upstream release (fix #1267548)
+
 * Wed Aug 12 2015 Nathaniel McCallum <npmccallum@redhat.com> - 1.0-1
 - New upstream release
 
