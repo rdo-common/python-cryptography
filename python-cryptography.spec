@@ -10,7 +10,7 @@
 
 Name:           python-cryptography
 Version:        1.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -106,6 +106,9 @@ popd
 
 
 %changelog
+* Wed Nov 04 2015 Robert Kuska <rkuska@redhat.com> - 1.0.2-2
+- Rebuilt for Python3.5 rebuild
+
 * Wed Sep 30 2015 Matěj Cepl <mcepl@redhat.com> - 1.0.2-1
 - New upstream release (fix #1267548)
 
