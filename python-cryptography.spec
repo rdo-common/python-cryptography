@@ -6,11 +6,10 @@
 %endif
 
 %global reqs() %1-idna >= 2.0 %1-pyasn1 %1-six >= 1.4.1 %1-cffi >= 0.8
-%global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version}
-
+%global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version} %1-pyasn1-modules %1-hypothesis
 Name:           python-cryptography
-Version:        1.0.2
-Release:        2%{?dist}
+Version:        1.1
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -106,6 +105,9 @@ popd
 
 
 %changelog
+* Wed Nov 11 2015 Robert Kuska <rkuska@redhat.com> - 1.1-1
+- Update to v1.1
+
 * Wed Nov 04 2015 Robert Kuska <rkuska@redhat.com> - 1.0.2-2
 - Rebuilt for Python3.5 rebuild
 
