@@ -5,10 +5,10 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
-%global reqs() %1-idna >= 2.0 %1-pyasn1 %1-six >= 1.4.1 %1-cffi >= 0.8
+%global reqs() %1-idna >= 2.0 %1-pyasn1 >= 0.1.8 %1-six >= 1.4.1 %1-cffi >= 1.4.1
 %global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version} %1-pyasn1-modules %1-hypothesis
 Name:           python-cryptography
-Version:        1.1
+Version:        1.2.1
 Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
@@ -105,6 +105,9 @@ popd
 
 
 %changelog
+* Sat Jan 09 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.2.1-1
+- Update to v1.2.1
+
 * Wed Nov 11 2015 Robert Kuska <rkuska@redhat.com> - 1.1-1
 - Update to v1.1
 
