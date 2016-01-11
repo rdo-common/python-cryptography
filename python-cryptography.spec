@@ -5,11 +5,9 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
-%global reqs() %1-idna >= 2.0 %1-pyasn1 >= 0.1.8 %1-six >= 1.4.1 %1-cffi >= 1.4.1
-%global breqs() %1-setuptools %1-pretend %1-iso8601 %1-cryptography-vectors = %{version} %1-pyasn1-modules %1-hypothesis
 Name:           python-cryptography
 Version:        1.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -18,21 +16,58 @@ URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
-Requires:       openssl
 
 BuildRequires:  python2-devel
-BuildRequires:  pytest %breqs python
-BuildRequires:  python-enum34 python-ipaddress %reqs python
-Requires:       python-enum34 python-ipaddress %reqs python
+BuildRequires:  python2-pytest
+BuildRequires:  python2-setuptools >= 1.0
+BuildRequires:  python-pretend
+BuildRequires:  python2-iso8601
+BuildRequires:  python2-cryptography-vectors = %{version}
+BuildRequires:  python2-pyasn1-modules >= 0.1.8
+BuildRequires:  python2-hypothesis
+
+BuildRequires:  python-idna >= 2.0
+BuildRequires:  python2-pyasn1 >= 0.1.8
+BuildRequires:  python2-six >= 1.4.1
+BuildRequires:  python2-cffi >= 1.4.1
+BuildRequires:  python-enum34
+BuildRequires:  python-ipaddress
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-pytest %breqs python3
-BuildRequires:  %reqs python3
+BuildRequires:  python3-pytest
+BuildRequires:  python3-setuptools >= 1.0
+BuildRequires:  python3-pretend
+BuildRequires:  python3-iso8601
+BuildRequires:  python3-cryptography-vectors = %{version}
+BuildRequires:  python3-pyasn1-modules >= 0.1.8
+BuildRequires:  python3-hypothesis
+
+BuildRequires:  python3-idna >= 2.0
+BuildRequires:  python3-pyasn1 >= 0.1.8
+BuildRequires:  python3-six >= 1.4.1
+BuildRequires:  python3-cffi >= 1.4.1
 %endif
 
-
 %description
+cryptography is a package designed to expose cryptographic primitives and
+recipes to Python developers.
+
+%package -n  python2-cryptography
+Group:          Development/Libraries
+Summary:        PyCA's cryptography library
+Obsoletes:      python-cryptography <= 1.2.1-1
+%{?python_provide:%python_provide python2-cryptography}
+
+Requires:       openssl
+Requires:       python-idna >= 2.0
+Requires:       python2-pyasn1 >= 0.1.8
+Requires:       python2-six >= 1.4.1
+Requires:       python2-cffi >= 1.4.1
+Requires:       python-enum34
+Requires:       python-ipaddress
+
+%description -n python2-cryptography
 cryptography is a package designed to expose cryptographic primitives and
 recipes to Python developers.
 
@@ -40,9 +75,13 @@ recipes to Python developers.
 %package -n  python3-cryptography
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
+%{?python_provide:%python_provide python3-cryptography}
 
 Requires:       openssl
-Requires:       %reqs python3
+Requires:       python3-idna >= 2.0
+Requires:       python3-pyasn1 >= 0.1.8
+Requires:       python3-six >= 1.4.1
+Requires:       python3-cffi >= 1.4.1
 
 %description -n python3-cryptography
 cryptography is a package designed to expose cryptographic primitives and
@@ -92,7 +131,7 @@ popd
 %endif
 
 
-%files
+%files -n python2-cryptography
 %doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
 %{python_sitearch}/*
 
@@ -105,6 +144,9 @@ popd
 
 
 %changelog
+* Mon Jan 11 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.2.1-2
+- Move python-cryptograph => python2-cryptography
+
 * Sat Jan 09 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.2.1-1
 - Update to v1.2.1
 
