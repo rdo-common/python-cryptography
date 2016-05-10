@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -17,19 +17,19 @@ Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptogra
 
 BuildRequires:  openssl-devel
 
-BuildRequires:  python2-devel
+BuildRequires:  python-devel
 BuildRequires:  pytest
-BuildRequires:  python2-setuptools >= 1.0
+BuildRequires:  python-setuptools >= 1.0
 BuildRequires:  python-pretend
-BuildRequires:  python2-iso8601
-BuildRequires:  python2-cryptography-vectors = %{version}
-BuildRequires:  python2-pyasn1-modules >= 0.1.8
-BuildRequires:  python2-hypothesis
+BuildRequires:  python-iso8601
+BuildRequires:  python-cryptography-vectors = %{version}
+BuildRequires:  python-pyasn1-modules >= 0.1.8
+BuildRequires:  python-hypothesis
 
 BuildRequires:  python-idna >= 2.0
-BuildRequires:  python2-pyasn1 >= 0.1.8
+BuildRequires:  python-pyasn1 >= 0.1.8
 BuildRequires:  python-six >= 1.4.1
-BuildRequires:  python2-cffi >= 1.4.1
+BuildRequires:  python-cffi >= 1.4.1
 BuildRequires:  python-enum34
 BuildRequires:  python-ipaddress
 
@@ -56,14 +56,19 @@ recipes to Python developers.
 %package -n  python2-cryptography
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
-Obsoletes:      python-cryptography <= 1.2.1-1
+Obsoletes:      python-cryptography <= %{version}-%{release}
+
+%if 0%{fedora}
 %{?python_provide:%python_provide python2-cryptography}
+%else
+Provides:       python-cryptography
+%endif
 
 Requires:       openssl
 Requires:       python-idna >= 2.0
-Requires:       python2-pyasn1 >= 0.1.8
+Requires:       python-pyasn1 >= 0.1.8
 Requires:       python-six >= 1.4.1
-Requires:       python2-cffi >= 1.4.1
+Requires:       python-cffi >= 1.4.1
 Requires:       python-enum34
 Requires:       python-ipaddress
 
@@ -144,6 +149,9 @@ popd
 
 
 %changelog
+* Tue May 10 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.3.1-2
+- Make it easier to build on EL7
+
 * Tue May 03 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.3.1-1
 - Update to v1.3.1
 
