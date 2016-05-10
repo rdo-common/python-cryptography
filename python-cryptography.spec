@@ -59,7 +59,7 @@ Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 Obsoletes:      python-cryptography <= %{version}-%{release}
 
-%if 0%{fedora}
+%if 0%{?fedora}
 %{?python_provide:%python_provide python2-cryptography}
 %else
 Provides:       python-cryptography
