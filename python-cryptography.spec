@@ -14,12 +14,13 @@ Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
+Patch0:         %{name}-1.3.1-setuptools.patch
 
 BuildRequires:  openssl-devel
 
 BuildRequires:  python-devel
 BuildRequires:  pytest
-BuildRequires:  python-setuptools >= 1.0
+BuildRequires:  python-setuptools
 BuildRequires:  python-pretend
 BuildRequires:  python-iso8601
 BuildRequires:  python-cryptography-vectors = %{version}
@@ -36,7 +37,7 @@ BuildRequires:  python-ipaddress
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3-pytest
-BuildRequires:  python3-setuptools >= 1.0
+BuildRequires:  python3-setuptools
 BuildRequires:  python3-pretend
 BuildRequires:  python3-iso8601
 BuildRequires:  python3-cryptography-vectors = %{version}
@@ -94,7 +95,7 @@ recipes to Python developers.
 %endif
 
 %prep
-%setup -q -n cryptography-%{version}
+%autosetup -p1 -n cryptography-%{version}
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
