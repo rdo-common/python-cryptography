@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.3.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -150,6 +150,9 @@ popd
 
 
 %changelog
+* Tue May 10 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.3.1-3
+- Remove versioned setuptools dependency
+
 * Tue May 10 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.3.1-2
 - Make it easier to build on EL7
 
