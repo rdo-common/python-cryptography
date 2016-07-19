@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.3.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -150,6 +150,9 @@ popd
 
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.1-4
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Tue May 10 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.3.1-3
 - Remove versioned setuptools dependency
 
