@@ -152,7 +152,6 @@ popd
 * Mon Nov 07 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.5.3-1
 - Update to v1.5.3
 - Update source URL
-- Remove patch
 
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.1-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
