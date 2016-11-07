@@ -6,15 +6,14 @@
 %endif
 
 Name:           python-cryptography
-Version:        1.3.1
-Release:        4%{?dist}
+Version:        1.5.3
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
-Source0:        https://pypi.python.org/packages/source/c/cryptography/cryptography-%{version}.tar.gz
-Patch0:         %{name}-1.3.1-setuptools.patch
+Source0:        https://pypi.io/packages/source/c/cryptography/cryptography-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
 
@@ -150,6 +149,11 @@ popd
 
 
 %changelog
+* Mon Nov 07 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.5.3-1
+- Update to v1.5.3
+- Update source URL
+- Remove patch
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.1-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
