@@ -25,6 +25,7 @@ BuildRequires:  python-iso8601
 BuildRequires:  python-cryptography-vectors = %{version}
 BuildRequires:  python-pyasn1-modules >= 0.1.8
 BuildRequires:  python-hypothesis
+BuildRequires:  pytz
 
 BuildRequires:  python-idna >= 2.0
 BuildRequires:  python-pyasn1 >= 0.1.8
@@ -42,6 +43,7 @@ BuildRequires:  python3-iso8601
 BuildRequires:  python3-cryptography-vectors = %{version}
 BuildRequires:  python3-pyasn1-modules >= 0.1.8
 BuildRequires:  python3-hypothesis
+BuildRequires:  python3-pytz
 
 BuildRequires:  python3-idna >= 2.0
 BuildRequires:  python3-pyasn1 >= 0.1.8
@@ -152,6 +154,7 @@ popd
 * Mon Nov 07 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.5.3-1
 - Update to v1.5.3
 - Update source URL
+- Add BR for pytz
 
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.1-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
