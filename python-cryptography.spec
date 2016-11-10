@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.5.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -128,6 +128,7 @@ popd
 %endif
 
 
+%if ! 0%{?fedora} < 24
 %check
 %{__python} setup.py test
 
@@ -135,6 +136,7 @@ popd
 pushd %{py3dir}
 %{__python3} setup.py test
 popd
+%endif
 %endif
 
 
@@ -151,6 +153,9 @@ popd
 
 
 %changelog
+* Thu Nov 10 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.5.3-2
+- Disable tests on releases earlier than 24
+
 * Mon Nov 07 2016 Nathaniel McCallum <npmccallum@redhat.com> - 1.5.3-1
 - Update to v1.5.3
 - Update source URL
