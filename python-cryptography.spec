@@ -14,6 +14,8 @@ Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/cryptography/cryptography-%{version}.tar.gz
+# Patch from https://github.com/pyca/cryptography/pull/3328
+Patch0:         add_memory_limit.patch
 
 BuildRequires:  openssl-devel
 
@@ -153,6 +155,7 @@ popd
 %changelog
 * Thu Jan 05 2017 Matěj Cepl <mcepl@redhat.com> - 1.7.1-1
 - Update to the latest upstream.
+- Add a patch from https://github.com/pyca/cryptography/pull/3328
 
 * Tue Dec 13 2016 Charalampos Stratakis <cstratak@redhat.com> - 1.5.3-5
 - Enable tests
