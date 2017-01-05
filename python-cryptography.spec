@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-cryptography
-Version:        1.5.3
-Release:        5%{?dist}
+Version:        1.7.1
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -151,6 +151,9 @@ popd
 
 
 %changelog
+* Thu Jan 05 2017 Matěj Cepl <mcepl@redhat.com> - 1.7.1-1
+- Update to the latest upstream.
+
 * Tue Dec 13 2016 Charalampos Stratakis <cstratak@redhat.com> - 1.5.3-5
 - Enable tests
 
