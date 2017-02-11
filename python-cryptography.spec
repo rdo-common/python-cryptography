@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -153,6 +153,9 @@ popd
 
 
 %changelog
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.7.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Thu Jan 05 2017 Matěj Cepl <mcepl@redhat.com> - 1.7.1-1
 - Update to the latest upstream.
 - Add a patch from https://github.com/pyca/cryptography/pull/3328
