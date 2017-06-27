@@ -6,7 +6,7 @@
 %endif
 
 Name:           python-cryptography
-Version:        1.7.2
+Version:        1.9
 Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
@@ -14,8 +14,6 @@ Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/cryptography/cryptography-%{version}.tar.gz
-# Patch from https://github.com/pyca/cryptography/pull/3328
-Patch0:         add_memory_limit.patch
 
 BuildRequires:  openssl-devel
 
@@ -25,32 +23,30 @@ BuildRequires:  python-setuptools
 BuildRequires:  python-pretend
 BuildRequires:  python-iso8601
 BuildRequires:  python-cryptography-vectors = %{version}
-BuildRequires:  python-pyasn1-modules >= 0.1.8
-BuildRequires:  python-hypothesis
+BuildRequires:  python2-asn1crypto >= 0.21
+BuildRequires:  python-hypothesis >= 1.11.4
 BuildRequires:  pytz
 
-BuildRequires:  python-idna >= 2.0
-BuildRequires:  python-pyasn1 >= 0.1.8
+BuildRequires:  python-idna >= 2.1
 BuildRequires:  python-six >= 1.4.1
-BuildRequires:  python-cffi >= 1.4.1
+BuildRequires:  python-cffi >= 1.7
 BuildRequires:  python-enum34
 BuildRequires:  python-ipaddress
 
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
-BuildRequires:  python3-pytest
+BuildRequires:  python3-pytest >= 2.9
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pretend
 BuildRequires:  python3-iso8601
 BuildRequires:  python3-cryptography-vectors = %{version}
-BuildRequires:  python3-pyasn1-modules >= 0.1.8
-BuildRequires:  python3-hypothesis
+BuildRequires:  python3-asn1crypto >= 0.21
+BuildRequires:  python3-hypothesis >= 1.11.4
 BuildRequires:  python3-pytz
 
-BuildRequires:  python3-idna >= 2.0
-BuildRequires:  python3-pyasn1 >= 0.1.8
+BuildRequires:  python3-idna >= 2.1
 BuildRequires:  python3-six >= 1.4.1
-BuildRequires:  python3-cffi >= 1.4.1
+BuildRequires:  python3-cffi >= 1.7
 %endif
 
 %description
@@ -69,10 +65,10 @@ Provides:       python-cryptography
 %endif
 
 Requires:       openssl
-Requires:       python-idna >= 2.0
-Requires:       python-pyasn1 >= 0.1.8
+Requires:       python-idna >= 2.1
+Requires:       python2-asn1crypto >= 0.21
 Requires:       python-six >= 1.4.1
-Requires:       python-cffi >= 1.4.1
+Requires:       python-cffi >= 1.7
 Requires:       python-enum34
 Requires:       python-ipaddress
 
@@ -87,10 +83,10 @@ Summary:        PyCA's cryptography library
 %{?python_provide:%python_provide python3-cryptography}
 
 Requires:       openssl
-Requires:       python3-idna >= 2.0
-Requires:       python3-pyasn1 >= 0.1.8
+Requires:       python3-idna >= 2.1
+Requires:       python3-asn1crypto >= 0.21
 Requires:       python3-six >= 1.4.1
-Requires:       python3-cffi >= 1.4.1
+Requires:       python3-cffi >= 1.7
 
 %description -n python3-cryptography
 cryptography is a package designed to expose cryptographic primitives and
@@ -153,6 +149,9 @@ popd
 
 
 %changelog
+* Tue Jun 27 2017 Christian Heimes <cheimes@redhat.com> - 1.9-1
+- Upstream release 1.9
+
 * Wed Feb 15 2017 Christian Heimes <cheimes@redhat.com> - 1.7.2-1
 - Update to latest upstream
 
