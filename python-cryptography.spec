@@ -7,7 +7,7 @@
 
 Name:           python-cryptography
 Version:        1.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -149,6 +149,9 @@ popd
 
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.9-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Tue Jun 27 2017 Christian Heimes <cheimes@redhat.com> - 1.9-1
 - Upstream release 1.9
 
