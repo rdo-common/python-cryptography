@@ -5,96 +5,98 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
-Name:           python-cryptography
-Version:        1.9
-Release:        3%{?dist}
+%global srcname cryptography
+
+Name:           python-%{srcname}
+Version:        2.0.2
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
-Source0:        https://pypi.io/packages/source/c/cryptography/cryptography-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
 
-BuildRequires:  python-devel
-BuildRequires:  pytest
-BuildRequires:  python-setuptools
+BuildRequires:  python2-devel
+BuildRequires:  python2-pytest
+BuildRequires:  python2-setuptools
 BuildRequires:  python-pretend
-BuildRequires:  python-iso8601
-BuildRequires:  python-cryptography-vectors = %{version}
+BuildRequires:  python2-iso8601
+BuildRequires:  python2-cryptography-vectors = %{version}
 BuildRequires:  python2-asn1crypto >= 0.21
-BuildRequires:  python-hypothesis >= 1.11.4
+BuildRequires:  python2-hypothesis >= 1.11.4
 BuildRequires:  pytz
 
-BuildRequires:  python-idna >= 2.1
-BuildRequires:  python-six >= 1.4.1
-BuildRequires:  python-cffi >= 1.7
+BuildRequires:  python2-idna >= 2.1
+BuildRequires:  python2-six >= 1.4.1
+BuildRequires:  python2-cffi >= 1.7
 BuildRequires:  python-enum34
 BuildRequires:  python-ipaddress
 
 %if 0%{?with_python3}
-BuildRequires:  python3-devel
-BuildRequires:  python3-pytest >= 2.9
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-pretend
-BuildRequires:  python3-iso8601
-BuildRequires:  python3-cryptography-vectors = %{version}
-BuildRequires:  python3-asn1crypto >= 0.21
-BuildRequires:  python3-hypothesis >= 1.11.4
-BuildRequires:  python3-pytz
+BuildRequires:  python%{python3_pkgversion}-devel
+BuildRequires:  python%{python3_pkgversion}-pytest >= 2.9
+BuildRequires:  python%{python3_pkgversion}-setuptools
+BuildRequires:  python%{python3_pkgversion}-pretend
+BuildRequires:  python%{python3_pkgversion}-iso8601
+BuildRequires:  python%{python3_pkgversion}-cryptography-vectors = %{version}
+BuildRequires:  python%{python3_pkgversion}-asn1crypto >= 0.21
+BuildRequires:  python%{python3_pkgversion}-hypothesis >= 1.11.4
+BuildRequires:  python%{python3_pkgversion}-pytz
 
-BuildRequires:  python3-idna >= 2.1
-BuildRequires:  python3-six >= 1.4.1
-BuildRequires:  python3-cffi >= 1.7
+BuildRequires:  python%{python3_pkgversion}-idna >= 2.1
+BuildRequires:  python%{python3_pkgversion}-six >= 1.4.1
+BuildRequires:  python%{python3_pkgversion}-cffi >= 1.7
 %endif
 
 %description
 cryptography is a package designed to expose cryptographic primitives and
 recipes to Python developers.
 
-%package -n  python2-cryptography
+%package -n  python2-%{srcname}
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
-Obsoletes:      python-cryptography <= %{version}-%{release}
+Obsoletes:      python-%{srcname} <= %{version}-%{release}
 
 %if 0%{?fedora}
-%{?python_provide:%python_provide python2-cryptography}
+%{?python_provide:%python_provide python2-%{srcname}}
 %else
-Provides:       python-cryptography
+Provides:       python-%{srcname}
 %endif
 
 Requires:       openssl
-Requires:       python-idna >= 2.1
+Requires:       python2-idna >= 2.1
 Requires:       python2-asn1crypto >= 0.21
-Requires:       python-six >= 1.4.1
-Requires:       python-cffi >= 1.7
+Requires:       python2-six >= 1.4.1
+Requires:       python2-cffi >= 1.7
 Requires:       python-enum34
 Requires:       python-ipaddress
 
-%description -n python2-cryptography
+%description -n python2-%{srcname}
 cryptography is a package designed to expose cryptographic primitives and
 recipes to Python developers.
 
 %if 0%{?with_python3}
-%package -n  python3-cryptography
+%package -n  python%{python3_pkgversion}-%{srcname}
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
-%{?python_provide:%python_provide python3-cryptography}
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 Requires:       openssl
-Requires:       python3-idna >= 2.1
-Requires:       python3-asn1crypto >= 0.21
-Requires:       python3-six >= 1.4.1
-Requires:       python3-cffi >= 1.7
+Requires:       python%{python3_pkgversion}-idna >= 2.1
+Requires:       python%{python3_pkgversion}-asn1crypto >= 0.21
+Requires:       python%{python3_pkgversion}-six >= 1.4.1
+Requires:       python%{python3_pkgversion}-cffi >= 1.7
 
-%description -n python3-cryptography
+%description -n python%{python3_pkgversion}-%{srcname}
 cryptography is a package designed to expose cryptographic primitives and
 recipes to Python developers.
 %endif
 
 %prep
-%autosetup -p1 -n cryptography-%{version}
+%autosetup -p1 -n %{srcname}-%{version}
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -103,27 +105,32 @@ find %{py3dir} -name '*.py' | xargs sed -i '1s|^#!/usr/bin/python|#!%{__python3}
 %endif
 
 %build
-%{__python2} setup.py build
-
+%if 0%{?fedora}
+%py2_build
 %if 0%{?with_python3}
 pushd %{py3dir}
-%{__python3} setup.py build
+%py3_build
 popd
-%endif
-
+%endif # with_python3
+%else
+%{__python2} setup.py build
+%endif # fedora
 
 %install
 # Actually other *.c and *.h are appropriate
 # see https://github.com/pyca/cryptography/issues/1463
 find . -name .keep -print -delete
 
-%{__python2} setup.py install --skip-build --prefix=%{_prefix} --root %{buildroot}
-
+%if 0%{?fedora}
+%py2_install
 %if 0%{?with_python3}
 pushd %{py3dir}
-%{__python3} setup.py install --skip-build --prefix=%{_prefix} --root %{buildroot}
+%py3_install
 popd
-%endif
+%endif # with_python3
+%else
+%{__python2} setup.py install --skip-build --prefix=%{_prefix} --root %{buildroot}
+%endif # fedora
 
 
 %check
@@ -136,19 +143,26 @@ popd
 %endif
 
 
-%files -n python2-cryptography
+%files -n python2-%{srcname}
 %doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
-%{python_sitearch}/*
+%{python_sitearch}/%{srcname}
+%{python_sitearch}/%{srcname}-%{version}-py*.egg-info
 
 
 %if 0%{?with_python3}
-%files -n python3-cryptography
-%doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
+%files -n python%{python3_pkgversion}-%{srcname}
+%doc README.rst docs
+%license LICENSE LICENSE.APACHE LICENSE.BSD
 %{python3_sitearch}/*
+%{python3_sitearch}/%{srcname}-%{version}-py*.egg-info
 %endif
 
 
 %changelog
+* Thu Aug 03 2017 Christian Heimes <cheimes@redhat.com> - 2.0.2-1
+- New upstream release 2.0.2
+- Modernize spec
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.9-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
