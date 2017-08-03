@@ -5,11 +5,13 @@
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %endif
 
+%{!?python3_pkgversion:%global python3_pkgversion 3}
+
 %global srcname cryptography
 
 Name:           python-%{srcname}
 Version:        2.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -58,7 +60,6 @@ recipes to Python developers.
 %package -n  python2-%{srcname}
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
-Obsoletes:      python-%{srcname} <= %{version}-%{release}
 
 %if 0%{?fedora}
 %{?python_provide:%python_provide python2-%{srcname}}
@@ -134,10 +135,14 @@ popd
 
 
 %check
+# workaround for pytest 3.2.0 bug https://github.com/pytest-dev/pytest/issues/2644
+rm -f tests/hazmat/primitives/test_padding.py
 %{__python} setup.py test
 
 %if 0%{?with_python3}
 pushd %{py3dir}
+# workaround for pytest 3.2.0 bug https://github.com/pytest-dev/pytest/issues/2644
+rm -f tests/hazmat/primitives/test_padding.py
 %{__python3} setup.py test
 popd
 %endif
@@ -145,8 +150,8 @@ popd
 
 %files -n python2-%{srcname}
 %doc LICENSE LICENSE.APACHE LICENSE.BSD README.rst docs
-%{python_sitearch}/%{srcname}
-%{python_sitearch}/%{srcname}-%{version}-py*.egg-info
+%{python2_sitearch}/%{srcname}
+%{python2_sitearch}/%{srcname}-%{version}-py*.egg-info
 
 
 %if 0%{?with_python3}
@@ -159,6 +164,9 @@ popd
 
 
 %changelog
+* Thu Aug 03 2017 Christian Heimes <cheimes@redhat.com> - 2.0.2-2
+- Add workaround for pytest bug
+
 * Thu Aug 03 2017 Christian Heimes <cheimes@redhat.com> - 2.0.2-1
 - New upstream release 2.0.2
 - Modernize spec
