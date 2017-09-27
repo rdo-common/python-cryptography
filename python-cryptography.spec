@@ -1,4 +1,4 @@
-%if 0%{?fedora} > 20
+%if 0%{?fedora} || 0%{?rhel} >= 8
 %global with_python3 1
 %else
 %{!?__python2: %global __python2 /usr/bin/python2}
@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.0.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -61,7 +61,7 @@ recipes to Python developers.
 Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 
-%if 0%{?fedora}
+%if 0%{?with_python3}
 %{?python_provide:%python_provide python2-%{srcname}}
 %else
 Provides:       python-%{srcname}
@@ -106,32 +106,28 @@ find %{py3dir} -name '*.py' | xargs sed -i '1s|^#!/usr/bin/python|#!%{__python3}
 %endif
 
 %build
-%if 0%{?fedora}
-%py2_build
 %if 0%{?with_python3}
+%py2_build
 pushd %{py3dir}
 %py3_build
 popd
-%endif # with_python3
 %else
 %{__python2} setup.py build
-%endif # fedora
+%endif # with_python3
 
 %install
 # Actually other *.c and *.h are appropriate
 # see https://github.com/pyca/cryptography/issues/1463
 find . -name .keep -print -delete
 
-%if 0%{?fedora}
-%py2_install
 %if 0%{?with_python3}
+%py2_install
 pushd %{py3dir}
 %py3_install
 popd
-%endif # with_python3
 %else
 %{__python2} setup.py install --skip-build --prefix=%{_prefix} --root %{buildroot}
-%endif # fedora
+%endif # with_python3
 
 
 %check
@@ -164,6 +160,9 @@ popd
 
 
 %changelog
+* Wed Sep 27 2017 Troy Dawson <tdawson@redhat.com> - 2.0.2-3
+- Cleanup spec file conditionals
+
 * Thu Aug 03 2017 Christian Heimes <cheimes@redhat.com> - 2.0.2-2
 - Add workaround for pytest bug
 
