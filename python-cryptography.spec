@@ -10,8 +10,8 @@
 %global srcname cryptography
 
 Name:           python-%{srcname}
-Version:        2.0.2
-Release:        3%{?dist}
+Version:        2.1
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -22,7 +22,7 @@ Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{versio
 BuildRequires:  openssl-devel
 
 BuildRequires:  python2-devel
-BuildRequires:  python2-pytest
+BuildRequires:  python2-pytest >= 3.2.1
 BuildRequires:  python2-setuptools
 BuildRequires:  python-pretend
 BuildRequires:  python2-iso8601
@@ -39,7 +39,7 @@ BuildRequires:  python-ipaddress
 
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-pytest >= 2.9
+BuildRequires:  python%{python3_pkgversion}-pytest >= 3.2.1
 BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pretend
 BuildRequires:  python%{python3_pkgversion}-iso8601
@@ -160,6 +160,9 @@ popd
 
 
 %changelog
+* Thu Oct 12 2017 Christian Heimes <cheimes@redhat.com> - 2.1-1
+- New upstream release 2.1
+
 * Wed Sep 27 2017 Troy Dawson <tdawson@redhat.com> - 2.0.2-3
 - Cleanup spec file conditionals
 
