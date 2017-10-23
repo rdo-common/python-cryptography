@@ -67,7 +67,7 @@ Summary:        PyCA's cryptography library
 Provides:       python-%{srcname}
 %endif
 
-Requires:       openssl
+Requires:       openssl-libs
 Requires:       python2-idna >= 2.1
 Requires:       python2-asn1crypto >= 0.21
 Requires:       python2-six >= 1.4.1
@@ -85,7 +85,7 @@ Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
-Requires:       openssl
+Requires:       openssl-libs
 Requires:       python%{python3_pkgversion}-idna >= 2.1
 Requires:       python%{python3_pkgversion}-asn1crypto >= 0.21
 Requires:       python%{python3_pkgversion}-six >= 1.4.1
