@@ -10,8 +10,8 @@
 %global srcname cryptography
 
 Name:           python-%{srcname}
-Version:        2.1
-Release:        2%{?dist}
+Version:        2.1.3
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -160,6 +160,9 @@ popd
 
 
 %changelog
+* Thu Nov 23 2017 Haïkel Guémar <hguemar@fedoraproject.org> - 2.1.3-1
+- Upstream 2.1.3
+
 * Tue Oct 24 2017 Christian Heimes <cheimes@redhat.com> - 2.1-2
 - Change Requires to openssl-libs
 
