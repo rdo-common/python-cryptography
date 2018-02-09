@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -160,6 +160,9 @@ popd
 
 
 %changelog
+* Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Thu Nov 23 2017 Haïkel Guémar <hguemar@fedoraproject.org> - 2.1.3-1
 - Upstream 2.1.3
 
