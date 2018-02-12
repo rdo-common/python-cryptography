@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -24,18 +24,18 @@ BuildRequires:  openssl-devel
 BuildRequires:  python2-devel
 BuildRequires:  python2-pytest >= 3.2.1
 BuildRequires:  python2-setuptools
-BuildRequires:  python-pretend
+BuildRequires:  python2-pretend
 BuildRequires:  python2-iso8601
 BuildRequires:  python2-cryptography-vectors = %{version}
 BuildRequires:  python2-asn1crypto >= 0.21
 BuildRequires:  python2-hypothesis >= 1.11.4
-BuildRequires:  pytz
+BuildRequires:  python2-pytz
 
 BuildRequires:  python2-idna >= 2.1
 BuildRequires:  python2-six >= 1.4.1
 BuildRequires:  python2-cffi >= 1.7
-BuildRequires:  python-enum34
-BuildRequires:  python-ipaddress
+BuildRequires:  python2-enum34
+BuildRequires:  python2-ipaddress
 
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
@@ -72,8 +72,8 @@ Requires:       python2-idna >= 2.1
 Requires:       python2-asn1crypto >= 0.21
 Requires:       python2-six >= 1.4.1
 Requires:       python2-cffi >= 1.7
-Requires:       python-enum34
-Requires:       python-ipaddress
+Requires:       python2-enum34
+Requires:       python2-ipaddress
 
 %description -n python2-%{srcname}
 cryptography is a package designed to expose cryptographic primitives and
@@ -160,6 +160,10 @@ popd
 
 
 %changelog
+* Mon Feb 12 2018 Iryna Shcherbina <ishcherb@redhat.com> - 2.1.3-3
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
