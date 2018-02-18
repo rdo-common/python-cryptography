@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.1.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -20,6 +20,7 @@ URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  openssl-devel
+BuildRequires:  gcc
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-pytest >= 3.2.1
@@ -160,6 +161,9 @@ popd
 
 
 %changelog
+* Sun Feb 18 2018 Christian Heimes <cheimes@redhat.com> - 2.1.3-4
+- Build requires gcc
+
 * Mon Feb 12 2018 Iryna Shcherbina <ishcherb@redhat.com> - 2.1.3-3
 - Update Python 2 dependency declarations to new packaging standards
   (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
