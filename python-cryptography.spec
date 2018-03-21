@@ -10,7 +10,7 @@
 %global srcname cryptography
 
 Name:           python-%{srcname}
-Version:        2.1.4
+Version:        2.2.1
 Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
@@ -161,6 +161,9 @@ popd
 
 
 %changelog
+* Wed Mar 21 2018 Christian Heimes <cheimes@redhat.com> - 2.2.1-1
+- New upstream release 2.2.1
+
 * Sun Feb 18 2018 Christian Heimes <cheimes@redhat.com> - 2.1.4-1
 - New upstream release 2.1.4
 
