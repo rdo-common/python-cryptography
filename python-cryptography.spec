@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.1.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -65,7 +65,8 @@ Summary:        PyCA's cryptography library
 %if 0%{?with_python3}
 %{?python_provide:%python_provide python2-%{srcname}}
 %else
-Provides:       python-%{srcname}
+Provides:       python-%{srcname} = %{version}-%{release}
+Obsoletes:      python-%{srcname} < 2.1.4
 %endif
 
 Requires:       openssl-libs
@@ -163,6 +164,9 @@ popd
 
 
 %changelog
+* Tue Apr 24 2018 Jon Schlueter <jschluet@redhat.com> 2.1.4-2
+- add Obsoletes for python-cryptography and versioned Provides (rhbz#1571358)
+
 * Sun Feb 18 2018 Christian Heimes <cheimes@redhat.com> - 2.1.4-1
 - New upstream release 2.1.4
 
