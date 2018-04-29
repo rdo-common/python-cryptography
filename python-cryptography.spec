@@ -134,7 +134,7 @@ popd
 %check
 # workaround for pytest 3.2.0 bug https://github.com/pytest-dev/pytest/issues/2644
 rm -f tests/hazmat/primitives/test_padding.py
-%{__python} setup.py test
+%{__python2} setup.py test
 
 %if 0%{?with_python3}
 pushd %{py3dir}
