@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -161,6 +161,9 @@ popd
 
 
 %changelog
+* Fri Jun 15 2018 Miro Hrončok <mhroncok@redhat.com> - 2.2.1-2
+- Rebuilt for Python 3.7
+
 * Wed Mar 21 2018 Christian Heimes <cheimes@redhat.com> - 2.2.1-1
 - New upstream release 2.2.1
 
