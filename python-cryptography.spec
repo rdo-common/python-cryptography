@@ -10,8 +10,8 @@
 %global srcname cryptography
 
 Name:           python-%{srcname}
-Version:        2.2.1
-Release:        3%{?dist}
+Version:        2.3
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
@@ -161,6 +161,10 @@ popd
 
 
 %changelog
+* Wed Jul 18 2018 Christian Heimes <cheimes@redhat.com> - 2.3-1
+- New upstream release 2.3
+- Fix AEAD tag truncation bug, RHBZ#1602752
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
