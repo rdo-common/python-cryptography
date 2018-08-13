@@ -11,13 +11,15 @@
 
 Name:           python-%{srcname}
 Version:        2.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
 Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{version}.tar.gz
+
+Patch0001:      0001-Fixed-4380-do-not-assume-TLSv1-is-available-in-OpenS.patch
 
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
@@ -161,6 +163,9 @@ popd
 
 
 %changelog
+* Mon Aug 13 2018 Christian Heimes <cheimes@redhat.com> - 2.3-2
+- Use TLSv1.2 in test as workaround for RHBZ#1615143
+
 * Wed Jul 18 2018 Christian Heimes <cheimes@redhat.com> - 2.3-1
 - New upstream release 2.3
 - Fix AEAD tag truncation bug, RHBZ#1602752
