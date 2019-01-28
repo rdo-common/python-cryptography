@@ -14,7 +14,6 @@ Version:        2.3
 Release:        2%{?dist}
 Summary:        PyCA's cryptography library
 
-Group:          Development/Libraries
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{version}.tar.gz
@@ -61,7 +60,6 @@ cryptography is a package designed to expose cryptographic primitives and
 recipes to Python developers.
 
 %package -n  python2-%{srcname}
-Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 
 %if 0%{?with_python3}
@@ -84,7 +82,6 @@ recipes to Python developers.
 
 %if 0%{?with_python3}
 %package -n  python%{python3_pkgversion}-%{srcname}
-Group:          Development/Libraries
 Summary:        PyCA's cryptography library
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
