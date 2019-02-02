@@ -11,7 +11,7 @@
 
 Name:           python-%{srcname}
 Version:        2.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        PyCA's cryptography library
 
 License:        ASL 2.0 or BSD
@@ -160,6 +160,9 @@ popd
 
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.3-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Mon Aug 13 2018 Christian Heimes <cheimes@redhat.com> - 2.3-2
 - Use TLSv1.2 in test as workaround for RHBZ#1615143
 
