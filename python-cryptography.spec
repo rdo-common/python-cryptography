@@ -10,15 +10,13 @@
 %global srcname cryptography
 
 Name:           python-%{srcname}
-Version:        2.3
-Release:        3%{?dist}
+Version:        2.5
+Release:        1%{?dist}
 Summary:        PyCA's cryptography library
 
 License:        ASL 2.0 or BSD
 URL:            https://cryptography.io/en/latest/
 Source0:        https://pypi.io/packages/source/c/%{srcname}/%{srcname}-%{version}.tar.gz
-
-Patch0001:      0001-Fixed-4380-do-not-assume-TLSv1-is-available-in-OpenS.patch
 
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
@@ -131,14 +129,10 @@ popd
 
 
 %check
-# workaround for pytest 3.2.0 bug https://github.com/pytest-dev/pytest/issues/2644
-rm -f tests/hazmat/primitives/test_padding.py
 %{__python2} setup.py test
 
 %if 0%{?with_python3}
 pushd %{py3dir}
-# workaround for pytest 3.2.0 bug https://github.com/pytest-dev/pytest/issues/2644
-rm -f tests/hazmat/primitives/test_padding.py
 %{__python3} setup.py test
 popd
 %endif
@@ -160,6 +154,9 @@ popd
 
 
 %changelog
+* Wed Feb 13 2019 Alfredo Moralejo <amoralej@redhat.com> - 2.5-1
+- Updated to 2.5.
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
