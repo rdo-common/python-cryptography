@@ -34,7 +34,7 @@ BuildRequires:  python2-pytz
 BuildRequires:  python2-idna >= 2.1
 BuildRequires:  python2-six >= 1.4.1
 BuildRequires:  python2-cffi >= 1.7
-BuildRequires:  python2-enum34
+BuildRequires:  python-enum34
 BuildRequires:  python2-ipaddress
 
 %if 0%{?with_python3}
@@ -71,7 +71,7 @@ Requires:       python2-idna >= 2.1
 Requires:       python2-asn1crypto >= 0.21
 Requires:       python2-six >= 1.4.1
 Requires:       python2-cffi >= 1.7
-Requires:       python2-enum34
+Requires:       python-enum34
 Requires:       python2-ipaddress
 
 %description -n python2-%{srcname}
